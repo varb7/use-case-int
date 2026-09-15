@@ -1,0 +1,43 @@
+# Secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+*.pem
+*.key
+
+# Python and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Runtime state and user data
+*.sqlite3
+*.sqlite3-*
+*.db
+desktop-server.log
+desktop.lock
+user-state/
+
+# Generated verification scratch directories
+verification/tmp*/
+source-full/
+
+# Packaging output
+build/
+dist/
+desktop-build/
+desktop-dist/
+desktop-checks/
+submission-checks/
+*.zip
+*.exe
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

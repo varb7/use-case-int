@@ -1,0 +1,52 @@
+test_lexical_morphology_miss_bypasses_model (__main__.EvidenceAndRoutingTests.test_lexical_morphology_miss_bypasses_model) ... ok
+test_loads_all_knowledge_and_approved_answers (__main__.EvidenceAndRoutingTests.test_loads_all_knowledge_and_approved_answers) ... ok
+test_no_evidence_bypasses_model (__main__.EvidenceAndRoutingTests.test_no_evidence_bypasses_model) ... ok
+test_no_keyword_overlap_returns_no_evidence (__main__.EvidenceAndRoutingTests.test_no_keyword_overlap_returns_no_evidence) ... ok
+test_owner_routes_cover_all_teams (__main__.EvidenceAndRoutingTests.test_owner_routes_cover_all_teams) ... ok
+test_retention_conflict_bypasses_model_and_routes_legal (__main__.EvidenceAndRoutingTests.test_retention_conflict_bypasses_model_and_routes_legal) ... ok
+test_retrieval_is_bounded_and_finds_encryption (__main__.EvidenceAndRoutingTests.test_retrieval_is_bounded_and_finds_encryption) ... ok
+test_all_supplied_layouts_and_counts (__main__.ParsingTests.test_all_supplied_layouts_and_counts) ... ok
+test_explicit_custom_question_column_is_supported (__main__.ParsingTests.test_explicit_custom_question_column_is_supported) ... ok
+test_filename_is_reduced_to_basename (__main__.ParsingTests.test_filename_is_reduced_to_basename) ... ok
+test_original_columns_order_and_row_order_are_preserved (__main__.ParsingTests.test_original_columns_order_and_row_order_are_preserved) ... ok
+test_rejects_blank_question (__main__.ParsingTests.test_rejects_blank_question) ... ok
+test_rejects_duplicate_headers (__main__.ParsingTests.test_rejects_duplicate_headers) ... ok
+test_rejects_empty_file (__main__.ParsingTests.test_rejects_empty_file) ... ok
+test_rejects_extra_csv_fields (__main__.ParsingTests.test_rejects_extra_csv_fields) ... ok
+test_rejects_malformed_csv_quotes (__main__.ParsingTests.test_rejects_malformed_csv_quotes) ... ok
+test_rejects_missing_question_mapping (__main__.ParsingTests.test_rejects_missing_question_mapping) ... ok
+test_rejects_non_utf8 (__main__.ParsingTests.test_rejects_non_utf8) ... ok
+test_rejects_oversized_file (__main__.ParsingTests.test_rejects_oversized_file) ... ok
+test_empty_model_response_becomes_processing_failure (__main__.ProviderAndEngineTests.test_empty_model_response_becomes_processing_failure) ... ok
+test_gemini_structured_response_contract (__main__.ProviderAndEngineTests.test_gemini_structured_response_contract) ... ok
+test_google_api_key_alias_is_accepted_without_printing_key (__main__.ProviderAndEngineTests.test_google_api_key_alias_is_accepted_without_printing_key) ... ok
+test_invalid_model_json_becomes_processing_failure (__main__.ProviderAndEngineTests.test_invalid_model_json_becomes_processing_failure) ... ok
+test_missing_google_key_is_reported_before_client_creation (__main__.ProviderAndEngineTests.test_missing_google_key_is_reported_before_client_creation) ... ok
+test_provider_exception_is_not_misreported_as_business_answer (__main__.ProviderAndEngineTests.test_provider_exception_is_not_misreported_as_business_answer) ... ok
+test_accept_then_edit_resets_review_state (__main__.StoreReviewAndExportTests.test_accept_then_edit_resets_review_state) ... ok
+test_cannot_answer_export_has_owner_and_blank_evidence (__main__.StoreReviewAndExportTests.test_cannot_answer_export_has_owner_and_blank_evidence) ... ok
+test_csv_export_preserves_partial_row_and_escapes_formulas (__main__.StoreReviewAndExportTests.test_csv_export_preserves_partial_row_and_escapes_formulas) ... ok
+test_failed_row_retries_without_regenerating_successful_row (__main__.StoreReviewAndExportTests.test_failed_row_retries_without_regenerating_successful_row) ... ok
+test_full_q1_job_persists_all_rows (__main__.StoreReviewAndExportTests.test_full_q1_job_persists_all_rows) ... ok
+test_invalid_or_failed_answer_cannot_be_accepted (__main__.StoreReviewAndExportTests.test_invalid_or_failed_answer_cannot_be_accepted) ... ok
+test_review_workbook_contains_internal_fields_and_all_rows (__main__.StoreReviewAndExportTests.test_review_workbook_contains_internal_fields_and_all_rows) ... ok
+test_app_starts_with_upload_control (__main__.StreamlitShellTests.test_app_starts_with_upload_control) ... ok
+test_invalid_upload_shows_useful_error (__main__.StreamlitShellTests.test_invalid_upload_shows_useful_error) ... ok
+test_mocked_gemini_q1_runs_through_review_and_export_controls (__main__.StreamlitShellTests.test_mocked_gemini_q1_runs_through_review_and_export_controls) ... ok
+test_unrecognized_layout_is_rejected_before_manual_mapping (__main__.StreamlitShellTests.test_unrecognized_layout_is_rejected_before_manual_mapping) ... ok
+test_valid_q1_upload_is_previewed_and_key_gate_is_visible (__main__.StreamlitShellTests.test_valid_q1_upload_is_previewed_and_key_gate_is_visible) ... ok
+test_cannot_answer_without_owner_is_blocked (__main__.ValidationTests.test_cannot_answer_without_owner_is_blocked) ... ok
+test_gemini_schema_contains_no_empty_enum_value (__main__.ValidationTests.test_gemini_schema_contains_no_empty_enum_value) ... ok
+test_invalid_status_is_rejected_by_schema (__main__.ValidationTests.test_invalid_status_is_rejected_by_schema) ... ok
+test_more_than_four_sentences_is_blocked (__main__.ValidationTests.test_more_than_four_sentences_is_blocked) ... ok
+test_non_exact_quote_is_blocked (__main__.ValidationTests.test_non_exact_quote_is_blocked) ... ok
+test_non_first_person_answer_is_blocked (__main__.ValidationTests.test_non_first_person_answer_is_blocked) ... ok
+test_stale_source_downgrades_confidence_and_adds_note (__main__.ValidationTests.test_stale_source_downgrades_confidence_and_adds_note) ... ok
+test_substantive_answer_without_evidence_is_blocked (__main__.ValidationTests.test_substantive_answer_without_evidence_is_blocked) ... ok
+test_unknown_evidence_reference_is_blocked (__main__.ValidationTests.test_unknown_evidence_reference_is_blocked) ... ok
+test_valid_supported_answer_passes (__main__.ValidationTests.test_valid_supported_answer_passes) ... ok
+
+----------------------------------------------------------------------
+Ran 47 tests in 7.091s
+
+OK
