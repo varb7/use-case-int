@@ -4,6 +4,8 @@ Current results are consolidated in [verification/VERIFICATION_REPORT.md](verifi
 
 ### First-run Google settings
 
+On Streamlit Cloud and other non-Windows Streamlit hosts, **Save settings** retains credentials only for the current session. Reloading the page clears them. For persistent configuration, set root-level `GOOGLE_API_KEY` and `GEMINI_MODEL` in the deployment's Streamlit Secrets settings (see README); these override sidebar values and are not removed by the sidebar button. The Windows storage instructions below apply to local Windows runs.
+
 Open **Google settings** in the sidebar. Enter the Google API key and a generation model available to the Google project, select **Save settings**, then **Test Google connection**. The password field intentionally stays blank after saving. The key and model are stored for the current Windows user via Windows Credential Manager; they are not written to `.env`, SQLite, logs or exports. **Remove saved settings** deletes both saved values. Environment variables still take precedence and are not deleted by that button.
 
 Credential Manager protects the key at rest but does not isolate it from other processes running as the same Windows user. Use a dedicated, restricted Google key, rotate it if the machine/user profile is compromised, and never include it in a submission. Connection testing makes a Google metadata request but sends no questionnaire content.

@@ -5,7 +5,7 @@ import streamlit as st
 from semantic import build_engine
 from app_paths import data_directory
 from secure_settings import (remove_settings, resolve_model, save_settings,
-                             settings_status, test_connection)
+                             settings_status, test_connection, uses_windows_credentials)
 
 from workflow import (
     JobStore,
@@ -34,13 +34,18 @@ st.title("Guided questionnaire review")
 st.caption("Synthetic case-study data only. Accepted means reviewed in this prototype, not formally approved.")
 
 key_ready, model_ready, setting_source = settings_status()
+if st.session_state.pop("_clear_api_key_input", False):
+    st.session_state["google_api_key_input"] = ""
 with st.sidebar.expander("Google settings", expanded=not (key_ready and model_ready)):
+    if not uses_windows_credentials():
+        st.caption("Saved settings last only for this session. Reloading the page clears them. "
+                   "For persistent configuration, use the app's Streamlit Secrets settings.")
     if key_ready and model_ready:
         st.success(f"Ready · credentials from {setting_source}")
     else:
         st.warning("Add a Google API key and generation model before drafting.")
     api_key_input = st.text_input(
-        "Google API key", type="password", value="",
+        "Google API key", type="password", value="", key="google_api_key_input",
         placeholder="Already stored" if key_ready else "Paste key",
         help="The field is never populated with the saved key.",
     )
@@ -57,7 +62,7 @@ with st.sidebar.expander("Google settings", expanded=not (key_ready and model_re
             if not saved_key or not saved_model:
                 st.error("Both an API key and generation model are required.")
             else:
-                st.success("Saved securely for this Windows user.")
+                st.session_state["_clear_api_key_input"] = True
                 st.rerun()
         except (ValueError, RuntimeError) as exc:
             st.error(str(exc))
@@ -71,6 +76,7 @@ with st.sidebar.expander("Google settings", expanded=not (key_ready and model_re
     if st.button("Remove saved settings", use_container_width=True):
         try:
             remove_settings()
+            st.session_state["_clear_api_key_input"] = True
             st.success("Saved settings removed. Environment variables, if set, still take precedence.")
             st.rerun()
         except RuntimeError as exc:

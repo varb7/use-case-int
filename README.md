@@ -72,6 +72,19 @@ $env:GOOGLE_API_KEY = "your-google-ai-studio-key"
 
 Never commit API keys, `.env` files, Streamlit secrets, generated SQLite databases, or customer questionnaires.
 
+### Streamlit Cloud credentials
+
+The hosted app saves sidebar credentials only in the current Streamlit session; reloading the page or starting a new session clears them. Windows Credential Manager is used only on Windows.
+
+For persistent deployment configuration, add these root-level entries in the app's **Settings → Secrets** and restart the app:
+
+```toml
+GOOGLE_API_KEY = "your-google-api-key"
+GEMINI_MODEL = "your-enabled-generation-model"
+```
+
+Streamlit exposes root-level secrets as environment variables, which take precedence over sidebar settings. **Remove saved settings** clears sidebar settings only; edit deployment secrets separately. See [Streamlit secrets management](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management).
+
 ## Optional Windows desktop build
 
 The desktop wrapper bundles the local Streamlit application, starts it automatically, opens the browser, and provides a system-tray shutdown control. See [desktop instructions](DESKTOP_GUIDE.md). The desktop edition is an optional local delivery route; the hosted web application is the primary nontechnical-user experience.

@@ -1,11 +1,25 @@
-"""Small boundary around the operating-system credential store."""
+"""Windows credential storage and session-only settings for hosted Streamlit."""
 from __future__ import annotations
 
 import os
+import sys
 
 SERVICE = "QuestionnaireReviewApp"
 API_KEY_ACCOUNT = "google_api_key"
 MODEL_ACCOUNT = "gemini_generation_model"
+
+
+def uses_windows_credentials() -> bool:
+    return sys.platform == "win32"
+
+
+def _session_settings():
+    import streamlit as st
+    from streamlit.runtime.scriptrunner import get_script_run_ctx
+
+    if get_script_run_ctx(suppress_warning=True) is None:
+        raise RuntimeError("Open the Streamlit app to save session settings, or configure environment variables.")
+    return st.session_state.setdefault("_google_settings", {})
 
 
 def _keyring():
@@ -14,6 +28,11 @@ def _keyring():
 
 
 def _read(account: str) -> str | None:
+    if not uses_windows_credentials():
+        try:
+            return _session_settings().get(account)
+        except RuntimeError:
+            return None
     try:
         value = _keyring().get_password(SERVICE, account)
     except Exception as exc:
@@ -24,6 +43,9 @@ def _read(account: str) -> str | None:
 def _write(account: str, value: str) -> None:
     if not value.strip():
         raise ValueError("The saved value cannot be empty")
+    if not uses_windows_credentials():
+        _session_settings()[account] = value.strip()
+        return
     try:
         _keyring().set_password(SERVICE, account, value.strip())
     except Exception as exc:
@@ -31,6 +53,9 @@ def _write(account: str, value: str) -> None:
 
 
 def _delete(account: str) -> None:
+    if not uses_windows_credentials():
+        _session_settings().pop(account, None)
+        return
     keyring = _keyring()
     try:
         keyring.delete_password(SERVICE, account)
@@ -74,7 +99,8 @@ def settings_status() -> tuple[bool, bool, str]:
         model = resolve_model()
     except RuntimeError as exc:
         return False, False, str(exc)
-    source = "environment" if os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") else "Windows Credential Manager"
+    source = "environment" if os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") else (
+        "Windows Credential Manager" if uses_windows_credentials() else "this session")
     return bool(key), bool(model), source
 
 
